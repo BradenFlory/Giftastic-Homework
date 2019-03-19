@@ -3,17 +3,17 @@ $(document).ready(function () {
 
     function displayGifs() {
 
-        var x = $(this).data("search");
-        console.log(x);
+        var LOTR = $(this).data("search");
+        console.log(LOTR);
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=dc6zaTOxFJmzC&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + LOTR + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         console.log(queryURL);
 
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).done(function (response) {
+        }).then(function (response) {
             var results = response.data;
             console.log(results);
             for (var i = 0; i < results.length; i++) {
@@ -51,11 +51,11 @@ $(document).ready(function () {
     function displayButtons() {
         $("#myButtons").empty();
         for (var i = 0; i < topics.length; i++) {
-            var a = $('<button class="btn btn-primary">');
-            a.attr("id", "gif");
-            a.attr("data-search", topics[i]);
-            a.text(topics[i]);
-            $("#myButtons").append(a);
+            var displayedButtons = $('<button class="btn btn-primary">');
+            displayedButtons.attr("id", "gif");
+            displayedButtons.attr("data-search", topics[i]);
+            displayedButtons.text(topics[i]);
+            $("#myButtons").append(displayedButtons);
         }
     }
 
